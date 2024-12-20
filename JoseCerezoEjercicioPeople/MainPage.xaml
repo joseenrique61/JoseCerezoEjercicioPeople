@@ -8,67 +8,67 @@
     <ContentPage.BindingContext>
         <local:MainPageViewModel/>
     </ContentPage.BindingContext>
-    <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="10">
-        <Grid RowDefinitions="*,Auto">
-            <Grid RowSpacing="10"
+    <Grid x:Name="jcerezo_Grid1" ColumnDefinitions="*,*" ColumnSpacing="10" Margin="10">
+        <Grid x:Name="jcerezo_Grid2" RowDefinitions="*,Auto">
+            <Grid x:Name="jcerezo_Grid3" RowSpacing="10"
                   RowDefinitions="Auto,Auto,Auto,Auto,Auto,*">
-                <Entry x:Name="newPerson"
+                <Entry x:Name="jcerezo_Entry"
                        Placeholder="Enter name" 
                        Text="{Binding PersonName}"
                        BackgroundColor="White"
                        TextColor="Black"/>
 
-                <Button Text="Add Person"
+                <Button x:Name="jcerezo_Button1" Text="Add Person"
                         Grid.Row="1"
                         Command="{Binding AddPerson}" 
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White"/>
 
-                <Label x:Name="statusMessage"
+                <Label x:Name="jcerezo_Label1"
                        TextColor="{StaticResource Primary}"
                        Text="{Binding StatusMessage}"
                        Grid.Row="2" />
             </Grid>
 
-            <Frame BackgroundColor="{StaticResource Primary}" Grid.Row="1">
-                <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
-                    <Image Source="yo.jpeg" Grid.RowSpan="2" HeightRequest="100" WidthRequest="100" Aspect="AspectFit">
+            <Frame x:Name="jcerezo_Frame1" BackgroundColor="{StaticResource Primary}" Grid.Row="1">
+                <Grid x:Name="jcerezo_Grid4" ColumnDefinitions="*,*" RowDefinitions="*,*">
+                    <Image x:Name="jcerezo_Image1" Source="yo.jpeg" Grid.RowSpan="2" HeightRequest="100" WidthRequest="100" Aspect="AspectFit">
                         <Image.Clip>
-                            <RoundRectangleGeometry CornerRadius="8"
+                            <RoundRectangleGeometry x:Name="jcerezo_RoundRectangleGeometry" CornerRadius="8"
                                 Rect="0,0,100,100"/>
                         </Image.Clip>
                         <Image.Shadow>
-                            <Shadow Brush="Black"
+                            <Shadow x:Name="jcerezo_Shadow" Brush="Black"
                                 Offset="0,10"
                                 Radius="20"
                                 Opacity="0.5" />
                         </Image.Shadow>
                     </Image>
-                    <Label Grid.Column="1" Text="José Cerezo" TextColor="White" FontSize="Medium" FontAttributes="Bold"/>
-                    <Label Grid.Column="1" Grid.Row="1" Text="20 años" TextColor="LightGray" FontSize="Small"/>
+                    <Label x:Name="jcerezo_Label2" Grid.Column="1" Text="José Cerezo" TextColor="White" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label x:Name="jcerezo_Label3" Grid.Column="1" Grid.Row="1" Text="20 años" TextColor="LightGray" FontSize="Small"/>
                 </Grid>
             </Frame>
         </Grid>
 
-        <ScrollView Grid.Column="1">
-            <Grid RowDefinitions="Auto,Auto,*" RowSpacing="10">
-                <Label Text="Registered people" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="{StaticResource Primary}"/>
-                <Grid ColumnDefinitions="*,2*,*" Grid.Row="1">
-                    <Label Text="Id" HorizontalTextAlignment="Center" TextColor="{StaticResource Primary}"/>
-                    <Label Grid.Column="1" HorizontalTextAlignment="Center" Text="Name" TextColor="{StaticResource Primary}"/>
-                    <Label Grid.Column="2" HorizontalTextAlignment="Center" Text="Delete" TextColor="{StaticResource Primary}"/>
+        <ScrollView x:Name="jcerezo_ScrollView1" Grid.Column="1">
+            <Grid x:Name="jcerezo_Grid5" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+                <Label x:Name="jcerezo_Label4" Text="Registered people" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="{StaticResource Primary}"/>
+                <Grid x:Name="jcerezo_Grid6" ColumnDefinitions="*,2*,*" Grid.Row="1">
+                    <Label x:Name="jcerezo_Label5" Text="Id" HorizontalTextAlignment="Center" TextColor="{StaticResource Primary}"/>
+                    <Label x:Name="jcerezo_Label6" Grid.Column="1" HorizontalTextAlignment="Center" Text="Name" TextColor="{StaticResource Primary}"/>
+                    <Label x:Name="jcerezo_Label7" Grid.Column="2" HorizontalTextAlignment="Center" Text="Delete" TextColor="{StaticResource Primary}"/>
                 </Grid>
 
-                <CollectionView x:Name="peopleList" Grid.Row="2" ItemsSource="{Binding AllPeople}">
+                <CollectionView x:Name="jcerezo_CollectionView" Grid.Row="2" ItemsSource="{Binding AllPeople}">
                     <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
+                        <LinearItemsLayout x:Name="jcerezo_LinearItemsLayout" Orientation="Vertical" ItemSpacing="2"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:Person">
-                            <Grid ColumnDefinitions="*,2*,*">
-                                <Label Text="{Binding Id}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="{StaticResource Primary}"/>
-                                <Label Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Name}" TextColor="{StaticResource Primary}"/>
-                                <Button ImageSource="delete.png" 
+                        <DataTemplate x:Name="jcerezo_DataTemplate" x:DataType="models:Person">
+                            <Grid x:Name="jcerezo_Grid7" ColumnDefinitions="*,2*,*">
+                                <Label x:Name="jcerezo_Label8" Text="{Binding Id}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="{StaticResource Primary}"/>
+                                <Label x:Name="jcerezo_Label9" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Name}" TextColor="{StaticResource Primary}"/>
+                                <Button x:Name="jcerezo_Button2" ImageSource="delete.png" 
                                      Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainPageViewModel}}, Path=Delete}"
                                      CommandParameter="{Binding Id}"
                                      Grid.Column="2"
