@@ -59,25 +59,24 @@
                     <Label x:Name="jcerezo_Label7" Grid.Column="2" HorizontalTextAlignment="Center" Text="Delete" TextColor="{StaticResource Primary}"/>
                 </Grid>
 
-                <CollectionView x:Name="jcerezo_CollectionView" Grid.Row="2" ItemsSource="{Binding AllPeople}">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout x:Name="jcerezo_LinearItemsLayout" Orientation="Vertical" ItemSpacing="2"/>
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
+                <ListView x:Name="jcerezo_ListView" Grid.Row="2" ItemsSource="{Binding AllPeople}">
+                    <ListView.ItemTemplate>
                         <DataTemplate x:Name="jcerezo_DataTemplate" x:DataType="models:Person">
-                            <Grid x:Name="jcerezo_Grid7" ColumnDefinitions="*,2*,*">
-                                <Label x:Name="jcerezo_Label8" Text="{Binding Id}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="{StaticResource Primary}"/>
-                                <Label x:Name="jcerezo_Label9" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Name}" TextColor="{StaticResource Primary}"/>
-                                <Button x:Name="jcerezo_Button2" ImageSource="delete.png" 
-                                     Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainPageViewModel}}, Path=Delete}"
-                                     CommandParameter="{Binding Id}"
-                                     Grid.Column="2"
-                                     BackgroundColor="{StaticResource Primary}"
-                                     HeightRequest="45"/>
-                            </Grid>
+                            <ViewCell x:Name="jcerezo_ViewCell">
+                                <Grid x:Name="jcerezo_Grid7" ColumnDefinitions="*,2*,*">
+                                    <Label x:Name="jcerezo_Label8" Text="{Binding Id}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="{StaticResource Primary}"/>
+                                    <Label x:Name="jcerezo_Label9" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Name}" TextColor="{StaticResource Primary}"/>
+                                    <Button x:Name="jcerezo_Button2" ImageSource="delete.png" 
+                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainPageViewModel}}, Path=Delete}"
+                                         CommandParameter="{Binding Id}"
+                                         Grid.Column="2"
+                                         BackgroundColor="{StaticResource Primary}"
+                                         HeightRequest="45"/>
+                                </Grid>
+                            </ViewCell>
                         </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
         </ScrollView>
     </Grid>
