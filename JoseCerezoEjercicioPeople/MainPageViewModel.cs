@@ -42,6 +42,8 @@ namespace JoseCerezoEjercicioPeople
 			Delete = new Command<int>((id) =>
 			{
 				App.PersonRepo.DeletePerson(id);
+
+				App.Current!.MainPage!.DisplayAlert("Registro eliminado", "José Cerezo acaba de eliminar un registro.", "Ok");
 				
 				OnPropertyChanged(nameof(StatusMessage));
 				OnPropertyChanged(nameof(AllPeople));
