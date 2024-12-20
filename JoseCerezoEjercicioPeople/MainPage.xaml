@@ -30,10 +30,29 @@
             Command="{Binding GetAllPeople}" />
 
             </Grid>
+
+            <Frame BackgroundColor="{StaticResource Primary}" Grid.Row="1" Margin="10">
+                <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
+                    <Image Source="yo.jpeg" Grid.RowSpan="2" HeightRequest="100" WidthRequest="100" Aspect="AspectFit">
+                        <Image.Clip>
+                            <RoundRectangleGeometry CornerRadius="8"
+                                Rect="0,0,100,100"/>
+                        </Image.Clip>
+                        <Image.Shadow>
+                            <Shadow Brush="Black"
+                                Offset="0,10"
+                                Radius="20"
+                                Opacity="0.5" />
+                        </Image.Shadow>
+                    </Image>
+                    <Label Grid.Column="1" Text="José Cerezo" TextColor="White" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label Grid.Column="1" Grid.Row="1" Text="20 años" TextColor="LightGray" FontSize="Small"/>
+                </Grid>
+            </Frame>
         </Grid>
         <ScrollView Grid.Column="1">
             <Grid RowDefinitions="Auto,Auto,*" RowSpacing="10">
-                <Label Text="Registered people" FontSize="Title" HorizontalTextAlignment="Center" TextColor="{StaticResource Primary}"/>
+                <Label Text="Registered people" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="{StaticResource Primary}"/>
                 <Grid ColumnDefinitions="*,2*,*" Grid.Row="1">
                     <Label Text="Id" HorizontalTextAlignment="Center" TextColor="{StaticResource Primary}"/>
                     <Label Grid.Column="1" HorizontalTextAlignment="Center" Text="Name" TextColor="{StaticResource Primary}"/>
