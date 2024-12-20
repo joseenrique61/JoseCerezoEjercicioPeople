@@ -1,25 +1,31 @@
-﻿namespace JoseCerezoEjercicioPeople
+﻿using JoseCerezoEjercicioPeople.Models;
+using System.Collections.Generic;
+
+namespace JoseCerezoEjercicioPeople;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+
+	public MainPage()
+	{
+		InitializeComponent();
+	}
+
+    public void OnNewButtonClicked(object sender, EventArgs args)
     {
-        int count = 0;
+        statusMessage.Text = "";
 
-        public MainPage()
-        {
-            InitializeComponent();
-        }
+        App.PersonRepo.AddNewPerson(newPerson.Text);
+        statusMessage.Text = App.PersonRepo.StatusMessage;
+    }
 
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
+    public void OnGetButtonClicked(object sender, EventArgs args)
+    {
+        statusMessage.Text = "";
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
-        }
+        List<Person> people = App.PersonRepo.GetAllPeople();
+        peopleList.ItemsSource = people;
     }
 
 }
+
