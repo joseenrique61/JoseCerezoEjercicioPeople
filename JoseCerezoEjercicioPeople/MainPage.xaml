@@ -8,30 +8,29 @@
     <ContentPage.BindingContext>
         <local:MainPageViewModel/>
     </ContentPage.BindingContext>
-    <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="0,10,0,0">
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="10">
         <Grid RowDefinitions="*,Auto">
-            <Grid Padding="5" RowSpacing="5" ColumnSpacing="5"
-          RowDefinitions="Auto,Auto,Auto,Auto,Auto,*">
+            <Grid RowSpacing="10"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,*">
                 <Entry x:Name="newPerson"
-                Placeholder="Enter name" 
-                Text="{Binding PersonName}"/>
+                       Placeholder="Enter name" 
+                       Text="{Binding PersonName}"
+                       BackgroundColor="White"
+                       TextColor="Black"/>
 
                 <Button Text="Add Person"
-            Grid.Row="1"
-            Command="{Binding AddPerson}" />
+                        Grid.Row="1"
+                        Command="{Binding AddPerson}" 
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"/>
 
                 <Label x:Name="statusMessage"
-           TextColor="{StaticResource Primary}"
-           Text="{Binding StatusMessage}"
-           Grid.Row="2" />
-
-                <Button Text="Get All People"
-            Grid.Row="3"
-            Command="{Binding GetAllPeople}" />
-
+                       TextColor="{StaticResource Primary}"
+                       Text="{Binding StatusMessage}"
+                       Grid.Row="2" />
             </Grid>
 
-            <Frame BackgroundColor="{StaticResource Primary}" Grid.Row="1" Margin="10">
+            <Frame BackgroundColor="{StaticResource Primary}" Grid.Row="1">
                 <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
                     <Image Source="yo.jpeg" Grid.RowSpan="2" HeightRequest="100" WidthRequest="100" Aspect="AspectFit">
                         <Image.Clip>
@@ -50,6 +49,7 @@
                 </Grid>
             </Frame>
         </Grid>
+
         <ScrollView Grid.Column="1">
             <Grid RowDefinitions="Auto,Auto,*" RowSpacing="10">
                 <Label Text="Registered people" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="{StaticResource Primary}"/>
@@ -58,17 +58,22 @@
                     <Label Grid.Column="1" HorizontalTextAlignment="Center" Text="Name" TextColor="{StaticResource Primary}"/>
                     <Label Grid.Column="2" HorizontalTextAlignment="Center" Text="Delete" TextColor="{StaticResource Primary}"/>
                 </Grid>
+
                 <CollectionView x:Name="peopleList" Grid.Row="2" ItemsSource="{Binding AllPeople}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
+                    </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Person">
                             <Grid ColumnDefinitions="*,2*,*">
                                 <Label Text="{Binding Id}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="{StaticResource Primary}"/>
                                 <Label Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding Name}" TextColor="{StaticResource Primary}"/>
-                                <ImageButton Source="delete.png" 
+                                <Button ImageSource="delete.png" 
                                      Command="{Binding Source={RelativeSource AncestorType={x:Type local:MainPageViewModel}}, Path=Delete}"
                                      CommandParameter="{Binding Id}"
                                      Grid.Column="2"
-                                     HeightRequest="25"/>
+                                     BackgroundColor="{StaticResource Primary}"
+                                     HeightRequest="45"/>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

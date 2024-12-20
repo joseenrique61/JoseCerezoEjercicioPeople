@@ -10,8 +10,6 @@ namespace JoseCerezoEjercicioPeople
 	{
 		private string personName;
 
-		private ObservableCollection<Person> allPeople;
-
 		public string PersonName
 		{
 			get => personName;
@@ -24,19 +22,9 @@ namespace JoseCerezoEjercicioPeople
 
 		public string StatusMessage => App.PersonRepo.StatusMessage;
 
-		public ObservableCollection<Person> AllPeople
-		{
-			get => allPeople;
-			set
-			{
-				allPeople = value;
-				OnPropertyChanged();
-			}
-		}
+		public ObservableCollection<Person> AllPeople => new(App.PersonRepo.GetAllPeople());
 
 		public ICommand AddPerson { get; }
-
-		public ICommand GetAllPeople { get; }
 
 		public ICommand Delete { get; }
 
@@ -48,11 +36,7 @@ namespace JoseCerezoEjercicioPeople
 				PersonName = "";
 
 				OnPropertyChanged(nameof(StatusMessage));
-			});
-
-			GetAllPeople = new Command(() =>
-			{
-				AllPeople = new ObservableCollection<Person>(App.PersonRepo.GetAllPeople());
+				OnPropertyChanged(nameof(AllPeople));
 			});
 
 			Delete = new Command<int>((id) =>
@@ -60,6 +44,7 @@ namespace JoseCerezoEjercicioPeople
 				App.PersonRepo.DeletePerson(id);
 				
 				OnPropertyChanged(nameof(StatusMessage));
+				OnPropertyChanged(nameof(AllPeople));
 			});
 		}
 
