@@ -42,7 +42,6 @@ public class PersonRepository
             {
                 Name = name,
             });
-            result = 0;
 
             StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, name);
         }

@@ -2,29 +2,35 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="JoseCerezoEjercicioPeople.MainPage" 
+             xmlns:local="clr-namespace:JoseCerezoEjercicioPeople"
+             xmlns:models="clr-namespace:JoseCerezoEjercicioPeople.Models"
              BackgroundColor="{DynamicResource Light}">
-
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel/>
+    </ContentPage.BindingContext>
     <Grid Padding="5" RowSpacing="5" ColumnSpacing="5"
           RowDefinitions="Auto,Auto,Auto,Auto,*">
 
         <Entry x:Name="newPerson"
-           Placeholder="Enter name" />
+           Placeholder="Enter name" 
+               Text="{Binding PersonName}"/>
 
         <Button Text="Add Person"
             Grid.Row="1"
-            Clicked="OnNewButtonClicked" />
+            Command="{Binding AddPerson}" />
 
         <Label x:Name="statusMessage"
            TextColor="{StaticResource Primary}"
+           Text="{Binding StatusMessage}"
            Grid.Row="2" />
 
         <Button Text="Get All People"
             Grid.Row="3"
-            Clicked="OnGetButtonClicked" />
+            Command="{Binding GetAllPeople}" />
 
-        <CollectionView x:Name="peopleList" Grid.Row="4">
+        <CollectionView x:Name="peopleList" Grid.Row="4" ItemsSource="{Binding AllPeople}">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Person">
                     <Grid ColumnDefinitions="*,2*">
                         <Label Text="{Binding Id}" TextColor="{StaticResource Primary}"/>
                         <Label Grid.Column="1" Text="{Binding Name}" TextColor="{StaticResource Primary}"/>
@@ -32,7 +38,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
     </Grid>
-
 </ContentPage>
