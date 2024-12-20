@@ -66,4 +66,18 @@ public class PersonRepository
 
         return new List<Person>();
     }
+
+    public void DeletePerson(int id)
+    {
+        try
+        {
+            Init();
+            int result = conn.Delete<Person>(id);
+            StatusMessage = $"Deleted {result} rows.";
+        }
+        catch (Exception ex)
+        {
+            StatusMessage = $"Failed to delete ID {id} with error {ex.Message}";
+        }
+    }
 }

@@ -38,6 +38,8 @@ namespace JoseCerezoEjercicioPeople
 
 		public ICommand GetAllPeople { get; }
 
+		public ICommand Delete { get; }
+
 		public MainPageViewModel()
 		{
 			AddPerson = new Command(() =>
@@ -51,6 +53,13 @@ namespace JoseCerezoEjercicioPeople
 			GetAllPeople = new Command(() =>
 			{
 				AllPeople = new ObservableCollection<Person>(App.PersonRepo.GetAllPeople());
+			});
+
+			Delete = new Command<int>((id) =>
+			{
+				App.PersonRepo.DeletePerson(id);
+				
+				OnPropertyChanged(nameof(StatusMessage));
 			});
 		}
 
